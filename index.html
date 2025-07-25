@@ -1,0 +1,616 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Do CVs Look Like in 2030?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            overflow: hidden;
+            height: 100vh;
+            color: #ffffff;
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 24px;
+            border: 1px solid #333333;
+            padding: 60px;
+            position: relative;
+            animation: slideIn 0.5s ease-out;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: #00d4ff;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        p, li {
+            font-size: 1.3em;
+            line-height: 1.6;
+            color: #cccccc;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        ul {
+            padding-left: 30px;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, #666666, #00d4ff, #00ff88);
+            z-index: 1;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            min-width: 220px;
+            z-index: 2;
+            position: relative;
+            border: 1px solid #444444;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .timeline-item h4 {
+            color: #00d4ff;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .timeline-item p {
+            font-size: 1em;
+            margin: 0;
+            color: #cccccc;
+        }
+
+        .pain-points {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .pain-point {
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #444444;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .pain-point h4 {
+            color: #ff6b6b;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .future-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #00d4ff20, #00ff8820);
+            border: 1px solid #00d4ff40;
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.15);
+        }
+
+        .feature-card h4 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #000000;
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.4);
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+        }
+
+        .slide-counter {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.6em;
+            color: #888888;
+            margin-bottom: 50px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #00d4ff20, #00ff8820);
+            border: 1px solid #00d4ff40;
+            color: #ffffff;
+            padding: 35px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.15);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .comparison-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border: 1px solid #444444;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .comparison-item.highlight {
+            background: linear-gradient(135deg, #00d4ff20, #00ff8820);
+            border: 1px solid #00d4ff;
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .comparison-item.highlight h4 {
+            color: #00d4ff;
+        }
+
+        .emoji {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #00d4ff15, #00ff8815);
+            border: 1px solid #00d4ff30;
+            color: white;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .cta-section h3 {
+            color: #ffffff;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .brand-accent {
+            color: #00d4ff;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .floats-style-card {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border: 1px solid #333333;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .floats-style-card:hover {
+            border-color: #00d4ff40;
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #00d4ff40, transparent);
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="slideNumber">1</span> / <span id="totalSlides">8</span>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>What Do CVs Look Like in <span class="gradient-text">2030</span>?</h1>
+            <p class="subtitle">From Paper to Pixels to... What's Next?</p>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <span class="emoji">📄</span>
+                    <h4>1950s CV</h4>
+                    <p>Typewritten, one page</p>
+                </div>
+                <div class="comparison-item">
+                    <span class="emoji">💻</span>
+                    <h4>2020s CV</h4>
+                    <p>PDF, but same format</p>
+                </div>
+                <div class="comparison-item highlight">
+                    <span class="emoji">🚀</span>
+                    <h4>2030 CV</h4>
+                    <p>Dynamic, Interactive, AI-Powered</p>
+                </div>
+            </div>
+            <div class="highlight-box">
+                Just as dating moved from personal ads to Tinder swipes, CVs are about to undergo their <span class="brand-accent">biggest transformation yet</span>.
+            </div>
+        </div>
+
+        <!-- Slide 2: CV Evolution Timeline -->
+        <div class="slide">
+            <h2>The CV Evolution Story</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1950s-1990s</h4>
+                    <p><strong>Paper Era</strong></p>
+                    <p>Typewritten<br>Chronological<br>Standardized</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2000s-2020s</h4>
+                    <p><strong>PDF Revolution</strong></p>
+                    <p>Digital distribution<br>Design elements<br>ATS constraints</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2030+</h4>
+                    <p><strong>Dynamic Future</strong></p>
+                    <p>Interactive<br>AI-powered<br>Multi-modal</p>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+            <div class="highlight-box">
+                Digital transformation is finally reaching the last analog process in recruitment
+            </div>
+        </div>
+
+        <!-- Slide 3: Current Pain Points -->
+        <div class="slide">
+            <h2>Current Pain Points</h2>
+            <div class="pain-points">
+                <div class="pain-point">
+                    <h4>🔒 Static in Dynamic World</h4>
+                    <p>Information becomes outdated the moment it's saved</p>
+                </div>
+                <div class="pain-point">
+                    <h4>📊 Information Overload</h4>
+                    <p>Too much info vs. ATS limitations create impossible balance</p>
+                </div>
+                <div class="pain-point">
+                    <h4>👔 One-Size-Fits-All</h4>
+                    <p>Generic approach in an increasingly personalized economy</p>
+                </div>
+            </div>
+            <div class="highlight-box">
+                The fundamentals haven't changed in <span class="brand-accent">20 years</span>, but the job market has transformed completely.
+            </div>
+        </div>
+
+        <!-- Slide 4: Why CVs Exist -->
+        <div class="slide">
+            <h2>Why CVs Exist - And Why That's Changing</h2>
+            <div class="future-features">
+                <div class="feature-card">
+                    <h4>📋 Original Purpose</h4>
+                    <ul>
+                        <li>Screening tool for mass applications</li>
+                        <li>Standardized comparison format</li>
+                        <li>Risk mitigation for employers</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>🔄 What's Shifting</h4>
+                    <ul>
+                        <li>Skills shortage = attract, don't just filter</li>
+                        <li>Remote work demands new criteria</li>
+                        <li>AI handles initial screening better</li>
+                        <li>Authenticity &gt; credentials</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+            <p style="text-align: center; font-size: 1.4em; color: #00d4ff;">The shift from filtering candidates to attracting them changes everything</p>
+        </div>
+
+        <!-- Slide 5: 2030 Content Revolution -->
+        <div class="slide">
+            <h2>2030 Vision: <span class="gradient-text">Content Revolution</span></h2>
+            <div class="floats-style-card">
+                <h3>🎯 Skills-First Architecture</h3>
+                <ul>
+                    <li>Real-time skill verification through platform integrations</li>
+                    <li>Project portfolios embedded directly in profiles</li>
+                    <li>Peer endorsements with context and recency</li>
+                </ul>
+            </div>
+            
+            <div class="floats-style-card">
+                <h3>🔮 Predictive Career Mapping</h3>
+                <ul>
+                    <li>AI-suggested career trajectories</li>
+                    <li>Skills gap analysis for specific roles</li>
+                    <li>Learning pathway recommendations</li>
+                </ul>
+            </div>
+
+            <div class="floats-style-card">
+                <h3>✨ Authentic Personal Branding</h3>
+                <ul>
+                    <li>Video introductions as standard (TikTok-length)</li>
+                    <li>Culture-fit indicators beyond buzzwords</li>
+                    <li>Values alignment scoring</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 6: Cross-Industry Examples -->
+        <div class="slide">
+            <h2>Learning from Other Industries</h2>
+            <div class="future-features">
+                <div class="feature-card">
+                    <h4>💕 Dating Apps Model</h4>
+                    <p>Swipe-based initial matching, detailed profiles for serious connections</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🛒 Social Commerce</h4>
+                    <p>User-generated content proving expertise and authenticity</p>
+                </div>
+            </div>
+            <div class="future-features">
+                <div class="feature-card">
+                    <h4>🎮 Gaming Platforms</h4>
+                    <p>Achievement badges and skill trees showing progression</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🎵 Music Streaming</h4>
+                    <p>Algorithm-based recommendations and discovery</p>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+            <p style="text-align: center; font-size: 1.3em; color: #cccccc;">Every industry has transformed user experience - recruitment is next</p>
+        </div>
+
+        <!-- Slide 7: 2030 Presentation Revolution -->
+        <div class="slide">
+            <h2>2030 Vision: <span class="gradient-text">Presentation Revolution</span></h2>
+            <div class="floats-style-card">
+                <h3>🎭 Multi-Modal Experiences</h3>
+                <ul>
+                    <li>AR business cards launching full professional profiles</li>
+                    <li>Interactive portfolio websites as standard</li>
+                    <li>Voice-activated CV summaries for accessibility</li>
+                </ul>
+            </div>
+
+            <div class="floats-style-card">
+                <h3>🤖 AI-Powered Personalization</h3>
+                <ul>
+                    <li>CVs that adapt content to specific job descriptions</li>
+                    <li>Automatic relevance scoring and highlights</li>
+                    <li>Multi-language and cultural adaptation</li>
+                </ul>
+            </div>
+
+            <div class="floats-style-card">
+                <h3>✅ Real-Time Verification</h3>
+                <ul>
+                    <li>Blockchain-verified credentials</li>
+                    <li>Live project demonstrations</li>
+                    <li>Integrated peer review systems</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 8: Call to Action -->
+        <div class="slide">
+            <h2>Opportunity for <span class="gradient-text">Recruitment Agencies</span></h2>
+            <div class="future-features">
+                <div class="feature-card">
+                    <h4>🎯 New Service Models</h4>
+                    <ul>
+                        <li>CV transformation consultancy</li>
+                        <li>Personal branding strategy</li>
+                        <li>Multi-platform presence management</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>⚡ Competitive Advantages</h4>
+                    <ul>
+                        <li>Early adoption gives edge</li>
+                        <li>Better candidate experience</li>
+                        <li>Data-rich profiles = better matches</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <h3>The agencies that help candidates navigate this transition will be the ones candidates <span class="brand-accent">choose to work with</span>.</h3>
+                <p style="font-size: 1.4em; margin-top: 25px; color: #cccccc;">Start experimenting with video introductions, skills assessments, and portfolio integration today.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled="">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('slideNumber').textContent = currentSlide + 1;
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            if (direction === 1 && currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else if (direction === -1 && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                changeSlide(-1);
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+
+</body></html>
